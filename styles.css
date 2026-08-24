@@ -1,0 +1,140 @@
+:root {
+  /* Palette */
+  --c-dark: #1a2231;   /* dark navy — backgrounds */
+  --c-tan: #c9a27a;    /* warm tan — accents (hover / active) */
+  --c-slate: #44506b;  /* slate blue-gray — dividers */
+  --c-light: #9aa5aa;  /* light gray — text */
+
+  /* Site */
+  --header-bg: var(--c-dark);
+  --text: var(--c-light);
+  --accent: var(--c-tan);
+  --divider: var(--c-slate);
+  --page-bg: var(--c-dark);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--page-bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ---------- Header ---------- */
+
+/* grid: [brand left] [nav centered] [empty spacer] */
+.site-header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: 76px;
+  padding: 0 48px;
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--divider);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.brand {
+  grid-column: 1;
+  justify-self: start;
+  color: var(--text);
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  text-decoration: none;
+  user-select: none;
+  transition: color 0.2s ease;
+}
+
+.brand:hover {
+  color: var(--accent);
+}
+
+.site-nav {
+  grid-column: 2;
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 44px;
+}
+
+.site-nav a {
+  color: var(--text);
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+/* no underlines — active state is accent color + slightly bolder */
+.site-nav a:hover {
+  color: var(--accent);
+}
+
+.site-nav a[aria-current="page"] {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ---------- Page ---------- */
+
+.page {
+  padding: 24px 48px;
+}
+
+.page--home {
+  min-height: calc(100vh - 76px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome {
+  color: var(--text);
+  font-size: 3rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .site-header {
+    padding: 0 24px;
+    height: 64px;
+    grid-template-columns: auto 1fr;
+  }
+
+  .brand {
+    font-size: 1.1rem;
+    letter-spacing: 0.3em;
+  }
+
+  .site-nav {
+    grid-column: 2;
+    gap: 8px 20px;
+  }
+
+  .site-nav a {
+    font-size: 0.95rem;
+  }
+
+  .page--home {
+    min-height: calc(100vh - 64px);
+  }
+
+  .welcome {
+    font-size: 2rem;
+  }
+}
